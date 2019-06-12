@@ -5,12 +5,14 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\BaseEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
  */
 class Event
 {
+    use BaseEntity;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

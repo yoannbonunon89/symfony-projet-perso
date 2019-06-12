@@ -61,7 +61,6 @@ class ApiEventController extends AbstractController
      */
     public function getOne(Event $event)
     {
-
         return $this->json([
             'event' => $event,
         ]);
@@ -75,12 +74,9 @@ class ApiEventController extends AbstractController
     {
         $data = $request->request->all(); // Toute les donées envoyer dans le post
         $entityUpdated = $entityservice->UpdateEntityByJson($event, $data);
-
-
         $form = $this->createForm(EventType::class, $event,); // Creer un formulaire qui recupére toute les informations de l'event de base
 
-        $form->submit($entityUpdated); // Simule le formulaire
-
+        $form->submit($entityUpdated->serialize()); // Simule le formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entityUpdated);
